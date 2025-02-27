@@ -1,4 +1,6 @@
 import csv
+import os
+import datetime  # Make sure this import is here
 import logging
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -7,8 +9,12 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 
-# Setup logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+# Setup logging to only display the date (YYYY-MM-DD)
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    datefmt='%Y-%m-%d'
+)
 
 def setup_driver():
     chrome_options = Options()
@@ -24,10 +30,10 @@ def setup_driver():
 def scrape_category(driver, category, url):
     results = []
     try:
-        logging.info(f"Processing category: {category} -> {url}\n")
+        logging.info(f"Processing category: {category} -> {url}")
         driver.get(url)
         
-        # Wait for the product grid to load (up to 10 seconds)
+        # Use an explicit wait for the product grid to load (up to 10 seconds)
         WebDriverWait(driver, 10).until(
             EC.presence_of_element_located(
                 (By.CSS_SELECTOR, "div.grid.grid-cols-2.md\\:grid-cols-3.lg\\:grid-cols-4.xl\\:grid-cols-5")
@@ -58,7 +64,13 @@ def scrape_category(driver, category, url):
             price_tag = product.find("span", class_="text-base font-bold text-default-dark")
             price = price_tag.get_text(strip=True) if price_tag else "N/A"
             
-            results.append({"category": category, "name": name, "price": price})
+            results.append({
+                "date": datetime.datetime.now().strftime('%Y-%m-%d'),
+                "category": category,
+                "name": name,
+                "price": price,
+                "source": url  # Record the source URL for reference
+            })
             logging.info(f"  Product: {name} - Price: {price}")
     
     except Exception as e:
@@ -88,16 +100,19 @@ def main():
     finally:
         driver.quit()
     
-    # Save the results to a CSV file
-    csv_file = "basic_food_products.csv"
-    with open(csv_file, "w", newline="", encoding="utf-8") as csvfile:
-        fieldnames = ["category", "name", "price"]
+    # Append today's data to the historical CSV file.
+    file_name = "historical_food_products.csv"
+    file_exists = os.path.exists(file_name)
+    fieldnames = ["date", "category", "name", "price", "source"]
+    
+    with open(file_name, "a", newline="", encoding="utf-8") as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-        writer.writeheader()
+        if not file_exists:
+            writer.writeheader()
         for product in all_results:
             writer.writerow(product)
     
-    logging.info(f"Scraping complete! Results saved to '{csv_file}'.")
+    logging.info("Scraping complete! Data appended to 'historical_food_products.csv'.")
 
 if __name__ == "__main__":
     main()
