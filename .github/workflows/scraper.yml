@@ -1,4 +1,4 @@
-name: Daily Scraper
+name: Daily Scraper and Render Deploy
 
 on:
   schedule:
@@ -22,7 +22,7 @@ jobs:
           pip install -r webScraper/requirements.txt  # If you have dependencies
 
       - name: Run Scraper
-        run: python webScraper/scraper.py  # Run the scraper from its directory
+        run: python webScraper/scraper.py  # Run the scraper
 
       - name: Commit and Push Data
         run: |
@@ -31,4 +31,10 @@ jobs:
           git add webScraper/historical_food_products.csv
           git commit -m "Update CSV with new data" || echo "No changes to commit"
           git push
+
+      - name: Trigger Render Deploy
+        run: |
+          curl -X POST "$RENDER_DEPLOY_HOOK_URL"
+        env:
+          RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
 
