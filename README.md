@@ -1,5 +1,12 @@
 # Monitoramento de Preços de Alimentos Essenciais
 
+## Acesso ao Histórico de Preços
+
+Você pode visualizar o histórico de preços e as tendências de forma interativa acessando:
+[Alimentos para Todos](https://alimentos-para-todos.onrender.com/)
+
+---
+
 ## Objetivo Principal
 
 Desenvolver um sistema que colete e analise preços de itens básicos (como arroz, feijão, leite, etc.) em supermercados locais, identificando variações e sugerindo os locais com os preços mais acessíveis. Essa iniciativa visa ajudar famílias a economizar e promover a transparência dos preços no mercado.
@@ -47,13 +54,6 @@ Este projeto integra três componentes essenciais:
 - **CSV:** Para armazenamento do histórico dos dados.
 - **Flask:** Framework web utilizado para criar a interface interativa.
 - **Chart.js:** Biblioteca JavaScript para a criação dos gráficos interativos.
-
----
-
-## Acesso ao Histórico de Preços
-
-Você pode visualizar o histórico de preços e as tendências de forma interativa acessando:
-[Alimentos para Todos](https://alimentos-para-todos.onrender.com/)
 
 ---
 
