@@ -83,4 +83,4 @@ Este sistema contribui para:
 
 ## Considerações Finais
 
-Este projeto é uma iniciativa inovadora para melhorar o acesso a informações essenciais, possibilitando decisões de compra mais informadas e contribuindo para a sustentabilidade econômica e social. As melhorias contínuas no tratamento dos dados e na interface de visualização permitirão uma experiência cada vez mais robusta e útil para os usuários.
+Este projeto é uma iniciativa para melhorar o acesso a informações essenciais, possibilitando decisões de compra mais informadas e contribuindo para a sustentabilidade econômica e social. As melhorias contínuas no tratamento dos dados e na interface de visualização permitirão uma experiência cada vez mais robusta e útil para os usuários.
