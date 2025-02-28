@@ -1,105 +1,183 @@
-body {
-	font-family: 'Montserrat', sans-serif;
-	background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+/* Global Variables */
+:root {
+	--primary-green: #28a745; /* Primary accent green */
+	--light-green: #d4edda;   /* Light background accent */
+	--dark-green: #155724;    /* For contrast */
+	--background: #f9fff5;    /* Very light green background */
+	--font-family: 'Montserrat', sans-serif;
+  }
+  
+  /* Global Styles */
+  body {
+	font-family: var(--font-family);
+	background: var(--background);
+	margin: 0;
+	padding: 0;
 	color: #333;
   }
   
-  header, nav, main, footer {
-	/* Facilita a identificação de cada seção */
-  }
-  
-  .navbar {
-	background-color: #007bff;
-  }
-  
-  .navbar-brand {
-	font-weight: 700;
-	color: #fff !important;
-  }
-  
+  /* Hero Section */
   .hero {
-	background: url('https://source.unsplash.com/1600x900/?data,chart') no-repeat center center;
-	background-size: cover;
-	color: #fff;
-	padding: 120px 0;
-	text-align: center;
 	position: relative;
+	min-height: 70vh;
+	background: url('https://source.unsplash.com/1600x900/?fresh,groceries') no-repeat center center;
+	background-size: cover;
+	display: flex;
+	align-items: center;
+	justify-content: center;
   }
   
-  .hero::after {
-	content: '';
+  .hero::before {
+	content: "";
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(0,0,0,0.4);
-	z-index: 1;
+	background: rgba(40, 167, 69, 0.5); /* Semi-transparent green overlay */
   }
   
   .hero .hero-content {
 	position: relative;
-	z-index: 2;
+	z-index: 1;
+	text-align: center;
+	padding: 0 20px;
   }
   
   .hero h1 {
-	font-size: 3.5rem;
+	font-size: 3rem;
 	font-weight: 700;
+	color: #fff;
+	margin-bottom: 0.5em;
   }
   
   .hero p {
-	font-size: 1.5rem;
-	margin-top: 15px;
+	font-size: 1.25rem;
+	color: #fff;
+	margin-bottom: 1em;
   }
   
+  /* Content Sections */
   .content-section {
-	padding: 80px 0;
+	padding: 60px 0;
   }
   
+  /* Card Styles */
   .card {
 	border: none;
-	border-radius: 15px;
-	box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-	margin-bottom: 40px;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
   .card-header {
-	background-color: #007bff;
-	border-top-left-radius: 15px;
-	border-top-right-radius: 15px;
+	background-color: var(--primary-green);
 	color: #fff;
+	font-size: 1.5rem;
 	text-align: center;
-	font-size: 1.8rem;
-	padding: 20px;
+	padding: 1rem;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
   }
   
+  .card-body {
+	padding: 1.5rem;
+  }
+  
+  /* Chart Container */
   #chartContainer {
 	position: relative;
 	height: 500px;
   }
   
+  /* About Section */
+  #sobre {
+	background: #fff;
+  }
+  
+  #sobre h2 {
+	font-size: 2rem;
+	margin-bottom: 1rem;
+	color: var(--primary-green);
+  }
+  
+  #sobre p {
+	font-size: 1rem;
+	color: #555;
+  }
+  
+  /* Open Source Section */
   .open-source {
+	background: var(--light-green);
 	text-align: center;
 	padding: 60px 0;
-	background-color: #e9ecef;
+  }
+  
+  .open-source h2 {
+	font-size: 2rem;
+	margin-bottom: 1rem;
+	color: var(--primary-green);
   }
   
   .open-source a {
-	color: #007bff;
+	color: var(--primary-green);
 	text-decoration: none;
 	font-weight: 600;
 	font-size: 1.2rem;
+	border: 2px solid var(--primary-green);
+	padding: 0.5rem 1rem;
+	border-radius: 5px;
+	transition: background 0.3s, color 0.3s;
   }
   
+  .open-source a:hover {
+	background: var(--primary-green);
+	color: #fff;
+  }
+  
+  /* Footer */
   footer {
-	background-color: #343a40;
-	color: #ccc;
+	background: var(--primary-green);
+	color: #fff;
 	padding: 20px 0;
 	text-align: center;
   }
   
   footer a {
-	color: #ccc;
-	text-decoration: none;
+	color: #fff;
+	text-decoration: underline;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 576px) {
+	.hero h1 {
+	  font-size: 2.5rem;
+	}
+	.hero p {
+	  font-size: 1rem;
+	}
+	.card-header {
+	  font-size: 1.25rem;
+	}
+  }
+  
+.graph-background {
+	position: relative; /* Can be absolute if you want it to overlap */
+	width: 100%;
+	overflow: hidden;
+	margin-bottom: -150px; /* Adjust based on how much overlap you want */
+	z-index: 0;
+  }
+  
+  .graph-background img {
+	width: 100%;
+	height: auto;
+	opacity: 0.3; /* Lower opacity so it doesn't overpower the graph */
+	display: block;
+  }
+  
+  #grafico .container {
+	position: relative;
+	z-index: 1;
+	padding-top: 150px; /* Adjust to provide spacing from the background */
   }
   

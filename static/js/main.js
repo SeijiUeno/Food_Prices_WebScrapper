@@ -1,16 +1,20 @@
 document.addEventListener('DOMContentLoaded', function () {
 	// Retrieve the chart data JSON passed from Flask
-	const chartData = JSON.parse(document.getElementById('chartData').textContent);
+	const chartDataScript = document.getElementById('chartData');
+	if (!chartDataScript) {
+	  console.error("No chartData element found in the DOM.");
+	  return;
+	}
+  
+	const chartData = JSON.parse(chartDataScript.textContent || '{}');
 	const datasets = [];
 	let labels = [];
   
-	// Use dates from the first category as labels
 	const categorias = Object.keys(chartData);
 	if (categorias.length > 0) {
 	  labels = chartData[categorias[0]].dates;
 	}
   
-	// Create a dataset for each category with a random color
 	categorias.forEach(categoria => {
 	  datasets.push({
 		label: categoria,
