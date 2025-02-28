@@ -32,7 +32,7 @@ jobs:
           git config --global user.email "actions@github.com"
           git add webScrapper/historical_food_products.csv
           git commit -m "Update CSV with new data" || echo "No changes to commit"
-          git push https://x-access-token:${GITHUB_TOKEN}@github.com/SeijiUeno/Alimentos_Para_todos.git HEAD:main
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/SeijiUeno/Food_Prices_WebScrapper.git HEAD:main
 
       - name: Trigger Render Deploy
         env:
