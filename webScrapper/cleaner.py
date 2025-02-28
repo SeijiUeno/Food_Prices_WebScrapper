@@ -3,7 +3,7 @@ import re
 import os
 
 # Set the data directory as the parent directory's "data" folder.
-data_dir = os.path.join("..", "data")
+data_dir = os.path.join("data")
 os.makedirs(data_dir, exist_ok=True)
 
 # Define file paths relative to the data directory.
