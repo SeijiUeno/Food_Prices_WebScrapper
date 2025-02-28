@@ -4,7 +4,7 @@ import json
 
 app = Flask(__name__)
 
-def load_historical_data(csv_file="historical_food_products.csv"):
+def load_historical_data(csv_file="historical_food_products_clean.csv"):
     data = {}
     with open(csv_file, newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
