@@ -100,8 +100,12 @@ def main():
     finally:
         driver.quit()
     
+    # Ensure the subdirectory exists
+    output_dir = "data"
+    os.makedirs(output_dir, exist_ok=True)
+    
     # Append today's data to the historical CSV file.
-    file_name = "historical_food_products.csv"
+    file_name = os.path.join(output_dir, "historical_food_products.csv")
     file_exists = os.path.exists(file_name)
     fieldnames = ["date", "category", "name", "price", "source"]
     

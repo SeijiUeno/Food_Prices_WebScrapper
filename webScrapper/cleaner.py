@@ -1,8 +1,17 @@
 import pandas as pd
 import re
+import os
+
+# Ensure the subdirectory exists
+output_dir = "data"
+os.makedirs(output_dir, exist_ok=True)
+
+# Define file paths within the webScrapper directory
+input_file = os.path.join(output_dir, "historical_food_products.csv")
+output_file = os.path.join(output_dir, "historical_food_products_clean.csv")
 
 # Load the CSV file with historical product data
-df = pd.read_csv("historical_food_products.csv")
+df = pd.read_csv(input_file)
 
 # Clean the price column: remove currency symbol and replace comma with dot
 df["price_clean"] = (
@@ -34,7 +43,7 @@ df_clean = df_unitary.groupby("category", group_keys=False).apply(
     lambda g: remove_outliers(g.drop(columns=["category"])).assign(category=g.name)
 )
 
-# Optionally, save the cleaned data to a new CSV file
-df_clean.to_csv("historical_food_products_clean.csv", index=False)
+# Save the cleaned data to a new CSV file in the webScrapper folder
+df_clean.to_csv(output_file, index=False)
 
-print("Data cleaning complete. Cleaned data saved to 'historical_food_products_clean.csv'.")
+print(f"Data cleaning complete. Cleaned data saved to '{output_file}'.")
