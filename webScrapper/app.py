@@ -4,7 +4,7 @@ import json
 
 app = Flask(__name__)
 
-def load_historical_data(csv_file="historical_food_products_clean.csv"):
+def load_historical_data(csv_file="../data/historical_food_products_clean.csv"):
     data = {}
     with open(csv_file, newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
@@ -19,7 +19,6 @@ def load_historical_data(csv_file="historical_food_products_clean.csv"):
 def index():
     raw_data = load_historical_data()
     # Prepare data to plot average price per category per day.
-    # For demonstration, we'll assume the price field is formatted as "R$ 25,65".
     graph_data = {}
     for date, rows in raw_data.items():
         for row in rows:
