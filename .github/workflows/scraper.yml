@@ -19,22 +19,25 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip install -r webScrapper/requirements.txt  # If you have dependencies
+          pip install -r webScrapper/requirements.txt
 
       - name: Run Scraper
-        run: python webScrapper/scraper.py  # Run the scraper
+        run: python webScrapper/scraper.py
 
       - name: Commit and Push Data
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
           git add webScrapper/historical_food_products.csv
           git commit -m "Update CSV with new data" || echo "No changes to commit"
-          git push
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/SeijiUeno/Alimentos_Para_todos.git HEAD:main
 
       - name: Trigger Render Deploy
-        run: |
-          curl -X POST "$RENDER_DEPLOY_HOOK_URL"
         env:
           RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        run: |
+          curl -X POST "$RENDER_DEPLOY_HOOK_URL"
+
 
