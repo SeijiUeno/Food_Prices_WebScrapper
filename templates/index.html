@@ -1,258 +1,58 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tendências Diárias de Preços</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Google Font: Montserrat -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <style>
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-      color: #333;
-    }
-    header, nav, main, footer {
-      /* Facilita a identificação de cada seção */
-    }
-    .navbar {
-      background-color: #007bff;
-    }
-    .navbar-brand {
-      font-weight: 700;
-      color: #fff !important;
-    }
-    .hero {
-      background: url('https://source.unsplash.com/1600x900/?data,chart') no-repeat center center;
-      background-size: cover;
-      color: #fff;
-      padding: 120px 0;
-      text-align: center;
-      position: relative;
-    }
-    .hero::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.4);
-      z-index: 1;
-    }
-    .hero .hero-content {
-      position: relative;
-      z-index: 2;
-    }
-    .hero h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
-    }
-    .hero p {
-      font-size: 1.5rem;
-      margin-top: 15px;
-    }
-    .content-section {
-      padding: 80px 0;
-    }
-    .card {
-      border: none;
-      border-radius: 15px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-      margin-bottom: 40px;
-    }
-    .card-header {
-      background-color: #007bff;
-      border-top-left-radius: 15px;
-      border-top-right-radius: 15px;
-      color: #fff;
-      text-align: center;
-      font-size: 1.8rem;
-      padding: 20px;
-    }
-    #chartContainer {
-      position: relative;
-      height: 500px;
-    }
-    .open-source {
-      text-align: center;
-      padding: 60px 0;
-      background-color: #e9ecef;
-    }
-    .open-source a {
-      color: #007bff;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1.2rem;
-    }
-    footer {
-      background-color: #343a40;
-      color: #ccc;
-      padding: 20px 0;
-      text-align: center;
-    }
-    footer a {
-      color: #ccc;
-      text-decoration: none;
-    }
-  </style>
-</head>
-<body>
-  <!-- Cabeçalho e Navegação -->
-  <header>
-    <nav class="navbar navbar-expand-lg">
-      <div class="container">
-        <a class="navbar-brand" href="#">Preços Diarios de alimentos Basicos</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="#grafico">Gráfico</a></li>
-            <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
-            <li class="nav-item"><a class="nav-link" href="#opensource">Open Source</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
-  
-  <!-- Conteúdo Principal -->
-  <main>
-    <!-- Seção Hero -->
-    <section class="hero">
-      <div class="container hero-content">
-        <h1>Tendências Diárias de Preços</h1>
-        <p>Decisões mais assertivas com insights claros e detalhados</p>
-      </div>
-    </section>
-    
-    <!-- Seção do Gráfico -->
-    <section id="grafico" class="content-section">
-      <div class="container">
-        <div class="card">
-          <div class="card-header">Gráfico de Preços por Categoria</div>
-          <div class="card-body">
-            <div id="chartContainer">
-              <canvas id="priceChart"></canvas>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Seção Sobre -->
-    <section id="sobre" class="content-section bg-light">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-6">
-            <h2>Sobre o Dashboard</h2>
-            <p>
-              Este dashboard foi desenvolvido para monitorar as tendências diárias de preços por categoria. Com visualizações interativas e dados atualizados em tempo real, você terá insights valiosos para impulsionar suas decisões estratégicas.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Seção Open Source -->
-    <section id="opensource" class="open-source">
-      <div class="container">
-        <h2>Projeto Open Source</h2>
-        <p>Este projeto é open source. Confira o código-fonte no GitHub!</p>
-        <a href="https://github.com/SeijiUeno/Alimentos_Para_todos" target="_blank">Acesse o Repositório no GitHub</a>
-      </div>
-    </section>
-  </main>
-  
-  <!-- Rodapé -->
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 Seiji. Todos os direitos reservados.</p>
-      <p>
-        Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction...
-      </p>
-      <p><a href="#">Política de Privacidade</a> | <a href="#">Termos de Uso</a></p>
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Conteúdo Principal -->
+<main>
+  <!-- Seção Hero -->
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>Tendências Diárias de Preços</h1>
+      <p>Decisões mais assertivas com insights claros e detalhados</p>
     </div>
-  </footer>
+  </section>
   
-  <!-- Scripts: Bootstrap Bundle com Popper e configuração do Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    // Converte os dados do gráfico enviados pelo back-end (ex.: Flask)
-    const chartData = JSON.parse('{{ chart_data | safe }}');
-    const datasets = [];
-    let labels = [];
+  <!-- Seção do Gráfico -->
+  <section id="grafico" class="content-section">
+    <div class="container">
+      <div class="card">
+        <div class="card-header">Gráfico de Preços por Categoria</div>
+        <div class="card-body">
+          <div id="chartContainer">
+            <canvas id="priceChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Seção Sobre -->
+  <section id="sobre" class="content-section bg-light">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <h2>Sobre o Dashboard</h2>
+          <p>
+            Este dashboard foi desenvolvido para monitorar as tendências diárias de preços por categoria. Com visualizações interativas e dados atualizados em tempo real, você terá insights valiosos para impulsionar suas decisões estratégicas.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Seção Open Source -->
+  <section id="opensource" class="open-source">
+    <div class="container">
+      <h2>Projeto Open Source</h2>
+      <p>Este projeto é open source. Confira o código-fonte no GitHub!</p>
+      <a href="https://github.com/SeijiUeno/Alimentos_Para_todos" target="_blank">Acesse o Repositório no GitHub</a>
+    </div>
+  </section>
+</main>
+{% endblock %}
 
-    // Usa as datas da primeira categoria como rótulos
-    const categorias = Object.keys(chartData);
-    if (categorias.length > 0) {
-      labels = chartData[categorias[0]].dates;
-    }
-
-    // Cria um conjunto de dados para cada categoria com cor aleatória
-    categorias.forEach(categoria => {
-      datasets.push({
-        label: categoria,
-        data: chartData[categoria].prices,
-        fill: false,
-        borderColor: '#' + Math.floor(Math.random() * 16777215).toString(16),
-        borderWidth: 3,
-        tension: 0.4,
-        pointRadius: 5,
-        pointHoverRadius: 8
-      });
-    });
-
-    const ctx = document.getElementById('priceChart').getContext('2d');
-    new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: labels,
-        datasets: datasets
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            position: 'bottom',
-            labels: {
-              font: { size: 14 }
-            }
-          },
-          tooltip: {
-            mode: 'index',
-            intersect: false,
-            backgroundColor: 'rgba(0, 0, 0, 0.7)'
-          }
-        },
-        scales: {
-          x: {
-            title: {
-              display: true,
-              text: 'Data',
-              font: { size: 16 }
-            }
-          },
-          y: {
-            title: {
-              display: true,
-              text: 'Preço Médio (BRL)',
-              font: { size: 16 }
-            }
-          }
-        },
-        interaction: {
-          mode: 'nearest',
-          intersect: false
-        }
-      }
-    });
-  </script>
-</body>
-</html>
+{% block scripts %}
+<!-- Passa os dados do gráfico como JSON -->
+<script id="chartData" type="application/json">
+  {{ chart_data | safe }}
+</script>
+{% endblock %}
