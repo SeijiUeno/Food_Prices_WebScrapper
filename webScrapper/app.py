@@ -1,10 +1,15 @@
 from flask import Flask, render_template
 import csv
 import json
+import os
 
 app = Flask(__name__)
 
-def load_historical_data(csv_file="../data/historical_food_products_clean.csv"):
+current_dir = os.path.dirname(os.path.abspath(__file__))
+data_dir = os.path.join(current_dir, "..", "data")
+csv_file = os.path.join(data_dir, "historical_food_products_clean.csv")
+
+def load_historical_data():
     data = {}
     with open(csv_file, newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
@@ -18,7 +23,7 @@ def load_historical_data(csv_file="../data/historical_food_products_clean.csv"):
 @app.route("/")
 def index():
     raw_data = load_historical_data()
-    # Prepare data to plot average price per category per day.
+    # Prepare data to plot average price per category per day
     graph_data = {}
     for date, rows in raw_data.items():
         for row in rows:
@@ -50,3 +55,4 @@ def index():
 
 if __name__ == "__main__":
     app.run(debug=True)
+    
