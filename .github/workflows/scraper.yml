@@ -19,7 +19,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip install -r webScraper/requirements.txt  # If you have dependencies
+          pip install -r webScrapper/requirements.txt  # If you have dependencies
 
       - name: Run Scraper
         run: python webScraper/scraper.py  # Run the scraper
