@@ -23,6 +23,9 @@ jobs:
 
       - name: Run Scraper
         run: python webScrapper/scraper.py
+      
+      - name: Run Cleaner
+        run: python webScrapper/cleaner.py
 
       - name: Commit and Push Data
         env:
