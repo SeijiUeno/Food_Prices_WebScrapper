@@ -77,6 +77,19 @@ def scrape_category(driver, category, url):
         logging.error(f"Error processing category {category}: {e}")
     return results
 
+def ensure_newline(file_name):
+    """Ensure the file ends with a newline to avoid merging rows when appending."""
+    with open(file_name, "rb+") as f:
+        f.seek(0, os.SEEK_END)
+        if f.tell() == 0:
+            # File is empty
+            return
+        f.seek(-1, os.SEEK_END)
+        last_char = f.read(1)
+        # If the last character is not a newline, append one.
+        if last_char != b'\n':
+            f.write(b'\n')
+
 def main():
     categories = [
         "arroz",
@@ -108,6 +121,10 @@ def main():
     file_name = os.path.join(output_dir, "historical_food_products.csv")
     file_exists = os.path.exists(file_name)
     fieldnames = ["date", "category", "name", "price", "source"]
+    
+    # If the file exists, make sure it ends with a newline.
+    if file_exists:
+        ensure_newline(file_name)
     
     with open(file_name, "a", newline="", encoding="utf-8") as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
