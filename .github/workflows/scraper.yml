@@ -35,7 +35,8 @@ jobs:
           git config --global user.email "actions@github.com"
           git reset --hard HEAD
           git pull --rebase origin main
-          git add historical_food_products.csv
+          git add webScrapper/historical_food_products.csv
+          git add webScrapper/historical_food_products_clean.csv
           git commit -m "Update CSV with new data" || echo "No changes to commit"
           git push https://x-access-token:${GITHUB_TOKEN}@github.com/SeijiUeno/Food_Prices_WebScrapper.git HEAD:main
 
