@@ -11,7 +11,8 @@ input_file = os.path.join(data_dir, "historical_food_products.csv")
 output_file = os.path.join(data_dir, "historical_food_products_clean.csv")
 
 # Load the CSV file with historical product data.
-df = pd.read_csv(input_file)
+# Using the Python engine and skipping bad lines.
+df = pd.read_csv(input_file, engine="python", on_bad_lines='skip')
 
 # Clean the price column: remove currency symbol and replace comma with dot.
 df["price_clean"] = (
