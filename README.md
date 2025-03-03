@@ -5,6 +5,7 @@
 Você pode visualizar o histórico de preços e as tendências de forma interativa acessando:
 [Alimentos para Todos](https://alimentos-para-todos.onrender.com/)
 
+Site fica suspenso até possuir atividade, podendo demorar até 50s no primeiro acesso do período. 
 ---
 
 ## Objetivo Principal
